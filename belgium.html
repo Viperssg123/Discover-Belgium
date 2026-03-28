@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Belgium — Heart of Europe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --yellow: #F4D03F;
+    --yellow-dark: #D4AC0D;
+    --red: #C0392B;
+    --red-light: #E74C3C;
+    --white: #FAFAF7;
+    --cream: #F5F0E8;
+    --gray: #8a8a8a;
+    --gray-light: #f0ede8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+    padding: 1.2rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(244,208,63,0.15);
+    transition: padding 0.3s;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 900;
+    color: var(--yellow);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--red); }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none; font-size: 0.85rem; font-weight: 400;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    transition: color 0.25s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 1px; background: var(--yellow);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--yellow); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 26px; height: 2px; background: var(--yellow); transition: 0.3s; }
+
+  /* ── HERO ── */
+  #home {
+    height: 100vh; min-height: 700px;
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: 
+      linear-gradient(160deg, rgba(10,10,10,0.75) 0%, rgba(10,10,10,0.4) 50%, rgba(192,57,43,0.25) 100%),
+      url('https://images.unsplash.com/photo-1491557345352-5929e343eb89?w=1800&q=80') center/cover no-repeat;
+    transform: scale(1.05);
+    animation: heroZoom 18s ease-in-out infinite alternate;
+  }
+  @keyframes heroZoom { from { transform: scale(1.05); } to { transform: scale(1.12); } }
+
+  .hero-flag-stripe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 6px;
+    background: linear-gradient(90deg, var(--black) 33.3%, var(--yellow) 33.3% 66.6%, var(--red) 66.6%);
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center; padding: 2rem;
+    animation: heroFadeUp 1.2s ease forwards;
+    opacity: 0; transform: translateY(30px);
+  }
+  @keyframes heroFadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 1.2rem;
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; width: 40px; height: 1px; background: var(--yellow); opacity: 0.6;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 900; line-height: 0.95;
+    color: var(--white);
+    margin-bottom: 1.8rem;
+    letter-spacing: -0.03em;
+  }
+  .hero-title em { font-style: italic; color: var(--yellow); }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: rgba(255,255,255,0.8);
+    max-width: 540px; margin: 0 auto 2.5rem;
+    line-height: 1.6; font-weight: 300; font-style: italic;
+  }
+  .hero-cta {
+    display: inline-flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  }
+  .btn-primary {
+    padding: 0.9rem 2.4rem;
+    background: var(--yellow); color: var(--black);
+    font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+    box-shadow: 0 4px 20px rgba(244,208,63,0.4);
+  }
+  .btn-primary:hover { background: var(--yellow-dark); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(244,208,63,0.5); }
+  .btn-ghost {
+    padding: 0.9rem 2.4rem;
+    background: transparent; color: var(--white);
+    font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.4);
+    transition: border-color 0.25s, color 0.25s, transform 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--white); transform: translateY(-2px); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: rgba(255,255,255,0.5); font-size: 0.7rem; letter-spacing: 0.2em;
+    text-transform: uppercase; z-index: 2;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  .hero-scroll::after {
+    content: ''; width: 1px; height: 50px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+  }
+  @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+
+  /* ── SECTIONS ── */
+  section { padding: 7rem 4rem; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .section-label::before { content: ''; width: 30px; height: 1px; background: var(--red); }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 700; line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--red); }
+  .section-body {
+    font-size: 1.05rem; line-height: 1.8;
+    color: #444; max-width: 680px;
+  }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--cream); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto;
+  }
+  .about-image-wrap {
+    position: relative;
+  }
+  .about-image-wrap img {
+    width: 100%; height: 520px; object-fit: cover;
+    display: block;
+  }
+  .about-badge {
+    position: absolute; bottom: -2rem; right: -2rem;
+    width: 160px; height: 160px;
+    background: var(--yellow);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+  }
+  .about-badge .num { font-size: 2.8rem; font-weight: 900; line-height: 1; }
+  .about-badge .lbl { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .facts-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .fact {
+    padding: 1.5rem; border-left: 3px solid var(--yellow);
+    background: rgba(244,208,63,0.07);
+  }
+  .fact .num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--red); }
+  .fact .lbl { font-size: 0.8rem; color: var(--gray); margin-top: 0.2rem; }
+
+  /* ── DESTINATIONS ── */
+  #destinations { background: var(--black); }
+  #destinations .section-title { color: var(--white); }
+  #destinations .section-label { color: var(--yellow); }
+  #destinations .section-label::before { background: var(--yellow); }
+  .dest-header { max-width: 1200px; margin: 0 auto 4rem; }
+  .dest-grid {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 1.5px; max-width: 1200px; margin: 0 auto;
+  }
+  .dest-card {
+    position: relative; overflow: hidden;
+    cursor: pointer;
+  }
+  .dest-card:first-child { grid-row: span 2; }
+  .dest-card img {
+    width: 100%; height: 300px; object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease, filter 0.4s;
+    filter: brightness(0.75) saturate(0.9);
+  }
+  .dest-card:first-child img { height: 100%; min-height: 600px; }
+  .dest-card:hover img { transform: scale(1.06); filter: brightness(0.6) saturate(1.1); }
+  .dest-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 2rem 1.8rem;
+    background: linear-gradient(to top, rgba(10,10,10,0.92) 0%, transparent 100%);
+    transform: translateY(30px);
+    transition: transform 0.4s ease;
+  }
+  .dest-card:hover .dest-info { transform: translateY(0); }
+  .dest-info h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--white); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;
+  }
+  .dest-info p { color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 1.5; }
+  .dest-tag {
+    display: inline-block; padding: 0.25rem 0.7rem;
+    background: var(--yellow); color: var(--black);
+    font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 0.6rem;
+  }
+
+  /* ── CULTURE ── */
+  #culture { background: var(--white); }
+  .culture-wrap { max-width: 1200px; margin: 0 auto; }
+  .culture-intro-row { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-bottom: 5rem; align-items: center; }
+  .culture-cards {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+  }
+  .culture-card {
+    padding: 2.2rem 1.8rem;
+    border: 1px solid var(--gray-light);
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .culture-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--black), var(--yellow), var(--red));
+    transform: scaleX(0); transition: transform 0.4s;
+  }
+  .culture-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); border-color: transparent; }
+  .culture-card:hover::before { transform: scaleX(1); }
+  .culture-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+  .culture-card h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 0.7rem; }
+  .culture-card p { font-size: 0.9rem; color: #555; line-height: 1.6; }
+  .culture-image { width: 100%; height: 400px; object-fit: cover; }
+
+  /* ── HISTORY ── */
+  #history { background: var(--black); }
+  #history .section-title { color: var(--white); }
+  #history .section-label { color: var(--yellow); }
+  #history .section-label::before { background: var(--yellow); }
+  .history-wrap { max-width: 900px; margin: 0 auto; }
+  .timeline { position: relative; padding-left: 2rem; margin-top: 4rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1px; background: linear-gradient(to bottom, var(--yellow), var(--red), transparent);
+  }
+  .tl-item {
+    position: relative; padding: 0 0 3.5rem 3rem;
+    opacity: 0; transform: translateX(-20px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .tl-item.visible { opacity: 1; transform: none; }
+  .tl-dot {
+    position: absolute; left: -0.5rem; top: 0.25rem;
+    width: 15px; height: 15px;
+    background: var(--yellow); border: 2px solid var(--black);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(244,208,63,0.2);
+  }
+  .tl-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem; font-weight: 700;
+    color: var(--yellow); letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+  }
+  .tl-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .tl-desc { font-size: 0.92rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+  /* ── GALLERY ── */
+  #gallery { background: var(--cream); }
+  .gallery-wrap { max-width: 1200px; margin: 0 auto; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    gap: 8px;
+    margin-top: 3rem;
+  }
+  .gallery-item {
+    overflow: hidden; cursor: pointer; position: relative;
+  }
+  .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .gallery-item:nth-child(5) { grid-column: span 2; }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s ease, filter 0.3s;
+    filter: saturate(0.85);
+  }
+  .gallery-item:hover img { transform: scale(1.08); filter: saturate(1.1); }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: rgba(10,10,10,0);
+    display: flex; align-items: flex-end; padding: 1rem;
+    transition: background 0.3s;
+  }
+  .gallery-item:hover .gallery-overlay { background: rgba(10,10,10,0.35); }
+  .gallery-overlay span {
+    color: var(--white); font-size: 0.75rem; letter-spacing: 0.15em;
+    text-transform: uppercase; opacity: 0; transform: translateY(8px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .gallery-item:hover .gallery-overlay span { opacity: 1; transform: none; }
+
+  /* ── TRAVEL TIPS ── */
+  #travel { background: var(--white); }
+  .tips-wrap { max-width: 1200px; margin: 0 auto; }
+  .tips-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3.5rem; }
+  .tip-card {
+    padding: 2.5rem;
+    background: var(--black); color: var(--white);
+    position: relative; overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .tip-card::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: var(--yellow);
+    transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+  }
+  .tip-card:hover { transform: translateY(-4px); }
+  .tip-card:hover::after { transform: scaleX(1); }
+  .tip-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem; font-weight: 900;
+    color: rgba(244,208,63,0.15); line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .tip-card h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 0.8rem; }
+  .tip-card p { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.6); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    border-top: 1px solid rgba(244,208,63,0.15);
+  }
+  .footer-top {
+    padding: 5rem 4rem;
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 4rem; max-width: 1200px; margin: 0 auto;
+  }
+  .footer-brand { }
+  .footer-brand .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 900; color: var(--yellow);
+    display: block; margin-bottom: 1rem;
+  }
+  .footer-brand p { font-size: 0.9rem; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 240px; }
+  .footer-socials { display: flex; gap: 1rem; margin-top: 1.5rem; }
+  .social-icon {
+    width: 38px; height: 38px;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.5); font-size: 0.85rem;
+    text-decoration: none; transition: border-color 0.3s, color 0.3s, background 0.3s;
+  }
+  .social-icon:hover { border-color: var(--yellow); color: var(--yellow); background: rgba(244,208,63,0.08); }
+  .footer-col h5 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--yellow); margin-bottom: 1.5rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.7rem; }
+  .footer-col ul li a {
+    color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.9rem;
+    transition: color 0.25s;
+  }
+  .footer-col ul li a:hover { color: var(--white); }
+  .newsletter { }
+  .newsletter p { font-size: 0.88rem; color: rgba(255,255,255,0.45); margin-bottom: 1.2rem; line-height: 1.6; }
+  .newsletter-form { display: flex; }
+  .newsletter-form input {
+    flex: 1; padding: 0.8rem 1.2rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-right: none; color: var(--white); font-size: 0.85rem;
+    outline: none; font-family: 'DM Sans', sans-serif;
+  }
+  .newsletter-form input::placeholder { color: rgba(255,255,255,0.3); }
+  .newsletter-form input:focus { border-color: var(--yellow); }
+  .newsletter-form button {
+    padding: 0.8rem 1.2rem;
+    background: var(--yellow); color: var(--black);
+    border: none; cursor: pointer; font-weight: 600; font-size: 0.85rem;
+    transition: background 0.25s;
+  }
+  .newsletter-form button:hover { background: var(--yellow-dark); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 1.8rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1200px; margin: 0 auto; font-size: 0.8rem;
+    color: rgba(255,255,255,0.25);
+  }
+  .flag-mini {
+    display: flex; height: 16px; overflow: hidden;
+  }
+  .flag-mini span { width: 22px; }
+  .flag-mini span:nth-child(1) { background: var(--black); }
+  .flag-mini span:nth-child(2) { background: var(--yellow); }
+  .flag-mini span:nth-child(3) { background: var(--red); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(10,10,10,0.97); padding: 2rem; gap: 1.5rem; }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+    section { padding: 5rem 1.5rem; }
+    .about-grid, .culture-intro-row { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-badge { display: none; }
+    .facts-row { grid-template-columns: 1fr 1fr; }
+    .dest-grid { grid-template-columns: 1fr; }
+    .dest-card:first-child { grid-row: auto; }
+    .culture-cards { grid-template-columns: 1fr 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item:nth-child(1) { grid-column: span 2; }
+    .gallery-item:nth-child(5) { grid-column: span 2; }
+    .tips-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 1.5rem; }
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem; }
+  }
+  @media (max-width: 600px) {
+    .hero-title { font-size: 3rem; }
+    .culture-cards { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item:nth-child(1), .gallery-item:nth-child(5) { grid-column: auto; }
+    .facts-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">Bel<span>gique</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#culture">Culture</a></li>
+    <li><a href="#history">History</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#travel">Travel Tips</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-flag-stripe"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Heart of Europe</div>
+    <h1 class="hero-title">Discover<br><em>Belgium</em></h1>
+    <p class="hero-subtitle">Where medieval grandeur meets modern flair — a kingdom of art, chocolate, and unrivalled joie de vivre.</p>
+    <div class="hero-cta">
+      <a href="#destinations" class="btn-primary">Explore Destinations</a>
+      <a href="#about" class="btn-ghost">Learn More</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid reveal">
+    <div class="about-image-wrap">
+      <img src="https://images.unsplash.com/photo-1563201515-adbe35a6c96b?w=900&q=80" alt="Belgium aerial view" loading="lazy">
+      <div class="about-badge">
+        <span class="num">3</span>
+        <span class="lbl">Regions</span>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-label">About Belgium</div>
+      <h2 class="section-title">A Kingdom of <em>Contrasts</em></h2>
+      <p class="section-body">Belgium is a small but remarkably diverse federal state in Western Europe. Bordered by France, Germany, Luxembourg, the Netherlands, and the North Sea, it punches far above its weight in culture, cuisine, and diplomacy — hosting both NATO and the European Union headquarters.</p>
+      <p class="section-body" style="margin-top:1rem;">The country is divided into three regions: Flanders (Dutch-speaking north), Wallonia (French-speaking south), and Brussels (officially bilingual capital).</p>
+      <div class="facts-row">
+        <div class="fact">
+          <div class="num">11.6M</div>
+          <div class="lbl">Population</div>
+        </div>
+        <div class="fact">
+          <div class="num">30,528</div>
+          <div class="lbl">km² Area</div>
+        </div>
+        <div class="fact">
+          <div class="num">3</div>
+          <div class="lbl">Official Languages</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section id="destinations">
+  <div class="dest-header reveal">
+    <div class="section-label">Top Destinations</div>
+    <h2 class="section-title" style="color:var(--white);">Cities Worth <em>Every Step</em></h2>
+  </div>
+  <div class="dest-grid reveal">
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1491557345352-5929e343eb89?w=900&q=80" alt="Brussels" loading="lazy">
+      <div class="dest-info">
+        <div class="dest-tag">Capital</div>
+        <h3>Brussels</h3>
+        <p>The cosmopolitan capital blends Art Nouveau architecture with EU politics, world-class museums, and legendary street food.</p>
+      </div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1548958506-56f8ef5c5432?w=700&q=80" alt="Bruges" loading="lazy">
+      <div class="dest-info">
+        <div class="dest-tag">Medieval Gem</div>
+        <h3>Bruges</h3>
+        <p>Drifting along cobblestone lanes and mirrored canals, Bruges is a perfectly preserved medieval fairytale.</p>
+      </div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1590761402977-35e28e2f7ced?w=700&q=80" alt="Antwerp" loading="lazy">
+      <div class="dest-info">
+        <div class="dest-tag">Diamond City</div>
+        <h3>Antwerp</h3>
+        <p>Fashion capital, diamond hub, and Rubens' hometown — Antwerp is bold, stylish, and perpetually surprising.</p>
+      </div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80" alt="Ardennes" loading="lazy">
+      <div class="dest-info">
+        <div class="dest-tag">Nature</div>
+        <h3>The Ardennes</h3>
+        <p>Lush forests, dramatic river valleys, and storied WWII battlefields make the Ardennes a compelling escape.</p>
+      </div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=700&q=80" alt="Ghent" loading="lazy">
+      <div class="dest-info">
+        <div class="dest-tag">Student City</div>
+        <h3>Ghent</h3>
+        <p>A vibrant university city with a stunning medieval core, lively cultural scene, and Belgium's best nightlife.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURE -->
+<section id="culture">
+  <div class="culture-wrap">
+    <div class="culture-intro-row reveal">
+      <div>
+        <div class="section-label">Culture & Traditions</div>
+        <h2 class="section-title">Life, <em>Savoured</em><br>Slowly</h2>
+        <p class="section-body">Belgium's culture is a rich tapestry woven from Flemish, Walloon, and Germanic threads. It's a nation that perfected the art of the good life: world-class beer, sublime chocolate, crispy frites, and festivals that fill entire towns with joy.</p>
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=800&q=80" alt="Belgian Waffles" class="culture-image" loading="lazy">
+      </div>
+    </div>
+    <div class="culture-cards reveal">
+      <div class="culture-card">
+        <div class="culture-icon">🧇</div>
+        <h4>Belgian Waffles</h4>
+        <p>Light, crispy, and dusted with powdered sugar — the liège and Brussels varieties are beloved worldwide.</p>
+      </div>
+      <div class="culture-card">
+        <div class="culture-icon">🍫</div>
+        <h4>Fine Chocolate</h4>
+        <p>Belgium houses over 2,000 chocolate shops. Pralines were invented here in 1912 by Jean Neuhaus.</p>
+      </div>
+      <div class="culture-card">
+        <div class="culture-icon">🍺</div>
+        <h4>Beer Culture</h4>
+        <p>Over 400 Belgian beer varieties are recognized by UNESCO as an Intangible Cultural Heritage.</p>
+      </div>
+      <div class="culture-card">
+        <div class="culture-icon">🎭</div>
+        <h4>Festivals</h4>
+        <p>From the Ghent Festival to Tomorrowland, Belgium celebrates with unmatched energy and creativity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORY -->
+<section id="history">
+  <div class="history-wrap">
+    <div class="reveal">
+      <div class="section-label">A Rich Past</div>
+      <h2 class="section-title">Centuries of <em>History</em></h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">57 BC</div>
+        <div class="tl-title">Roman Conquest</div>
+        <p class="tl-desc">Julius Caesar conquers the "Belgae" tribes, as described in his Gallic Wars, making the region a prosperous Roman province.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1302</div>
+        <div class="tl-title">Battle of the Golden Spurs</div>
+        <p class="tl-desc">Flemish militia defeat the French cavalry, becoming a defining moment of Flemish identity and national pride.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1568–1648</div>
+        <div class="tl-title">Eighty Years' War</div>
+        <p class="tl-desc">The Spanish Netherlands era reshapes the region's borders and identity through decades of religious and political conflict.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1830</div>
+        <div class="tl-title">Independence</div>
+        <p class="tl-desc">The Belgian Revolution results in independence from the Netherlands. Leopold I becomes the first King of the Belgians.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1914–1918</div>
+        <div class="tl-title">World War I</div>
+        <p class="tl-desc">Belgium heroically resists German invasion. The "brave little Belgium" narrative gains international sympathy and admiration.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1958</div>
+        <div class="tl-title">Expo 58 & European Community</div>
+        <p class="tl-desc">Brussels hosts the World Expo and becomes the de facto capital of the emerging European project — a role it holds to this day.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1993</div>
+        <div class="tl-title">Federal State</div>
+        <p class="tl-desc">Belgium officially becomes a federal state with three regions, three communities, and three official languages.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gallery-wrap">
+    <div class="reveal">
+      <div class="section-label">Visual Journey</div>
+      <h2 class="section-title">Belgium in <em>Frames</em></h2>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1491557345352-5929e343eb89?w=900&q=80" alt="Grand Place Brussels" loading="lazy">
+        <div class="gallery-overlay"><span>Grand Place</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1548958506-56f8ef5c5432?w=600&q=80" alt="Bruges Canal" loading="lazy">
+        <div class="gallery-overlay"><span>Bruges Canal</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=600&q=80" alt="Belgian Waffles" loading="lazy">
+        <div class="gallery-overlay"><span>Belgian Waffles</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1590761402977-35e28e2f7ced?w=600&q=80" alt="Antwerp" loading="lazy">
+        <div class="gallery-overlay"><span>Antwerp Skyline</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=900&q=80" alt="Belgian Architecture" loading="lazy">
+        <div class="gallery-overlay"><span>Historic Architecture</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1563201515-adbe35a6c96b?w=600&q=80" alt="Belgium Countryside" loading="lazy">
+        <div class="gallery-overlay"><span>Belgian Countryside</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Ardennes" loading="lazy">
+        <div class="gallery-overlay"><span>The Ardennes</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAVEL TIPS -->
+<section id="travel">
+  <div class="tips-wrap">
+    <div class="reveal">
+      <div class="section-label">Practical Guide</div>
+      <h2 class="section-title">Travel <em>Smart</em></h2>
+    </div>
+    <div class="tips-grid reveal">
+      <div class="tip-card">
+        <div class="tip-num">01</div>
+        <h4>Best Time to Visit</h4>
+        <p>April–June and September–October offer mild weather and fewer crowds. July brings festivals like Tomorrowland. Avoid rainy November.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">02</div>
+        <h4>Getting Around</h4>
+        <p>Belgium has an excellent rail network. The train between Brussels, Bruges, Ghent, and Antwerp takes under an hour. Cycling is king in Flanders.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">03</div>
+        <h4>Language Tips</h4>
+        <p>Dutch in Flanders, French in Wallonia, German in the east. English is widely spoken in cities. Learn "merci" and "dankjewel" — locals appreciate it.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">04</div>
+        <h4>Currency & Budget</h4>
+        <p>Belgium uses the Euro. It's moderately priced. Budget €60–100/day for a comfortable trip including accommodation, food, and transport.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">05</div>
+        <h4>Local Customs</h4>
+        <p>Belgians value punctuality, privacy, and good food. Greet with a single cheek kiss. Don't rush meals — dining is a social ritual here.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">06</div>
+        <h4>Must-Try Foods</h4>
+        <p>Moules-frites, speculoos biscuits, jenever gin, Liège waffles, and Trappist ales. Skip the tourist traps — find a local brasserie.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="logo">Belgique</span>
+      <p>Discover the heart of Europe — a kingdom of art, history, chocolate, and joie de vivre waiting to be explored.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-icon">𝕏</a>
+        <a href="#" class="social-icon">in</a>
+        <a href="#" class="social-icon">ig</a>
+        <a href="#" class="social-icon">yt</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Explore</h5>
+      <ul>
+        <li><a href="#about">About Belgium</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#culture">Culture</a></li>
+        <li><a href="#history">History</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Plan Your Trip</h5>
+      <ul>
+        <li><a href="#travel">Travel Tips</a></li>
+        <li><a href="#">Visa Info</a></li>
+        <li><a href="#">Accommodation</a></li>
+        <li><a href="#">Events Calendar</a></li>
+        <li><a href="#">Transport Guide</a></li>
+      </ul>
+    </div>
+    <div class="footer-col newsletter">
+      <h5>Newsletter</h5>
+      <p>Get travel inspiration, seasonal guides, and hidden gems delivered to your inbox.</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="Your email address">
+        <button type="button">→</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.06); padding: 1.8rem 4rem; display:flex; justify-content:space-between; align-items:center; max-width:100%;">
+    <span>© 2024 Belgique. All rights reserved.</span>
+    <div class="flag-mini">
+      <span></span><span></span><span></span>
+    </div>
+    <span>Made with ♥ for Belgium</span>
+  </div>
+</footer>
+
+<script>
+  // Hamburger nav
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // Intersection Observer for reveal animations
+  const reveals = document.querySelectorAll('.reveal, .tl-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const delay = el.classList.contains('tl-item')
+          ? [...document.querySelectorAll('.tl-item')].indexOf(el) * 120
+          : 0;
+        setTimeout(() => el.classList.add('visible'), delay);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Close mobile nav on link click
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+</script>
+</body>
+</html>
